@@ -5,7 +5,7 @@ import { UPLOAD_EDIT_DELETE_DATA, UPLOAD_EDIT_DELETE_DATA_SUCESS, ERROR_UPLOAD_E
 
 function* uploadDocu({ dataC, token, type }:any): any{
     try{
-        let url = 'https://directory-admin.vercel.app/';
+        let url = 'https://directory-admin-server.vercel.app/';
         let obj = {
             method: 'POST',
             url: url+'uploadResources',

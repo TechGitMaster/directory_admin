@@ -2,12 +2,11 @@ const express = require('express');
 const app = express();
 const App = require('./App');
 const mongoose = require('mongoose');
-
-//this is only for local___________________________________
 const cors = require('cors');
+
+
+
 app.use(cors());
-
-
 app.use(express.json())
 app.use('/', App)
 
