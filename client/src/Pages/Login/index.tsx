@@ -14,7 +14,7 @@ const Login: React.FC = () => {
         if(usernameRef.current.value === 'root' && passRef.current.value === 'root'){
             let obj = {
                 method: 'POST',
-                url: 'http://localhost:4000/login',
+                url: 'https://directory-admin.vercel.app/login',
                 params: { /*this is for req.params */ },
                 data: { username: 'root', pass: 'root' },
                 headers: {

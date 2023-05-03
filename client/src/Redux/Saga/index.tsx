@@ -5,7 +5,7 @@ import { UPLOAD_EDIT_DELETE_DATA, UPLOAD_EDIT_DELETE_DATA_SUCESS, ERROR_UPLOAD_E
 
 function* uploadDocu({ dataC, token, type }:any): any{
     try{
-        let url = 'http://localhost:4000/';
+        let url = 'https://directory-admin.vercel.app/';
         let obj = {
             method: 'POST',
             url: url+'uploadResources',
@@ -19,6 +19,7 @@ function* uploadDocu({ dataC, token, type }:any): any{
 
     
         const response = yield call(axios, obj, { withCredentials: true });
+        console.log(response.data);
 
         yield put({ res: 'succes', type: UPLOAD_EDIT_DELETE_DATA_SUCESS })
     }catch(error){

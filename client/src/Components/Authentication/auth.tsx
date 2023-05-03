@@ -5,7 +5,7 @@ const checkingAuth = async () => {
     try{
         let obj = {
             method: 'POST',
-            url: 'http://localhost:4000/checkingAuth',
+            url: 'https://directory-admin.vercel.app/checkingAuth',
             params: { /*this is for req.params */ },
             data: { /*this is for req.body */ },
             headers: {
