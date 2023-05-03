@@ -1,18 +1,18 @@
 const express = require('express');
 const app = express();
 const App = require('./App');
-/*const mongoose = require('mongoose');*/
+const mongoose = require('mongoose');
 
 //this is only for local___________________________________
 /*const cors = require('cors');
 app.use(cors());*/
 
 
-app.use(express.json())
+/*app.use(express.json())*/
 app.use('/', App)
 
 
-/*const database = async () => {
+const database = async () => {
     try{
         await mongoose.connect(process.env.DATABASE_URI, 
             { useNewUrlParser: true, useUnifiedTopology: true });
@@ -20,7 +20,7 @@ app.use('/', App)
         console.error(err);
     }
 }
-database();*/
+database();
 
 //this is only for local___________________________________
 /*mongoose.connection.once('open', () => { 
