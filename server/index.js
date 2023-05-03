@@ -7,9 +7,13 @@ const mongoose = require('mongoose');
 /*const cors = require('cors');
 app.use(cors());*/
 
-app.use(express.json())
-app.use('/', App)
+const Auth = require('./Components/Authentication');
+const AddRsources = require('./Components/AddResources');
 
+app.use(express.json())
+//app.use('/', App)
+app.use('/', Auth);
+app.use('/', AddRsources);
 
 const database = async () => {
     try{
