@@ -13,9 +13,9 @@ const BreadCrumbs = ({ pathBread }:IBreadCrumbs) => {
                 <img src={home} alt='home' className='w-[23px] h-[23px]' />
                 {
                     pathBread.map(path => 
-                    <div className='flex items-center mt-1'>
+                    <div key={ Math.random() } className='flex items-center mt-1'>
                         <p className='text-[#9BA2AE] text-[20px] px-[18px]'>{'>'}</p>
-                        <p className='text-[#868789] text-[15px] '>{path}</p>
+                        <p className='text-[#868789] text-[15px]'>{path}</p>
                     </div>
                     )
                 }

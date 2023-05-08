@@ -16,6 +16,8 @@ import Home from './Pages/Home';
 import AddResources from './Pages/AddResources';
 import InventoryResources from './Pages/InventoryResources';
 import TopyearResources from './Pages/TopyearResources';
+import ViewResources from './Pages/InventoryResources/ViewResources';
+import AddtopYear from './Pages/TopyearResources/AddTopYear';
 
 
 const root = ReactDOMClient.createRoot(document.querySelector('#root') as HTMLDivElement);
@@ -36,7 +38,9 @@ root.render(
                         <Route path='/home' element={ <Home /> }>
                             <Route path='addResource' element={ <AddResources /> } />
                             <Route path='inventoryResources' element={ <InventoryResources /> } />
+                            <Route path='inventoryResources/:id' element={ <ViewResources /> } />
                             <Route path='topyearResources' element={ <TopyearResources /> } />
+                            <Route path='topyearResources/:id' element={ <AddtopYear /> } />
                         </Route>
                     </Route>
 

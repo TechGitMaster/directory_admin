@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import BreadCrumbs from '../../Components/Breadcrumbs';
-import { search } from '../../utilities/PNG';
+import BreadCrumbs from '../../../Components/Breadcrumbs';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 
 // Import the main component
 import { Viewer, Worker } from '@react-pdf-viewer/core'; // install this library
@@ -12,21 +11,22 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 
-import checkingAuth from '../../Components/Authentication/auth';
-import { GET_DOCU } from '../../Redux/Actions';
-import { empty, imgFrontPDF } from '../../utilities/PNG';
-import AskingChange from '../../Components/AskingChange';
-import LoadingAnimation from '../../Components/LoadingAnimation';
-import DisableScrollPlugin from '../../Components/DisableScrollPDF';
+import checkingAuth from '../../../Components/Authentication/auth';
+import { GET_DOCU } from '../../../Redux/Actions';
+import { empty, imgFrontPDF, search } from '../../../utilities/PNG';
+import AskingChange from '../../../Components/AskingChange';
+import LoadingAnimation from '../../../Components/LoadingAnimation';
+import DisableScrollPlugin from '../../../Components/DisableScrollPDF';
 
 
-const InventoryResources: React.FC = () => {
+const AddtopYear: React.FC = () => {
+    const { id } = useParams();
+    
     const dispatch = useDispatch();
     const { clickNavi } = useOutletContext<any>();
     
     const dataDocuments = useSelector((a:any) => a.Resourcesfunc);
-    
-    const breadCrumbs = ['Management', 'Inventory Resources'];
+    const [breadCrumbs, setBreadCrumbs] = useState<any>([]);
 
     //useRef for year and search bar_____________________________________________
     const searchFilter = useRef<any>('');
@@ -43,6 +43,7 @@ const InventoryResources: React.FC = () => {
     const courses: Array<string> = ['ALL', 'BSCS', 'BSIT', 'BSCpE', 'BSBA', 'BSAIS', 'BSA', 'BSRTCS', 'BACOMM', 'BSTM', 'ACT', 'ART'];
 
     useEffect(() => {
+        setBreadCrumbs(['Management', 'Top-year Resources', (id === "topThesis" ? 'Top Thesis':'Other Thesis')]);
         buttonSearch();
     }, []);
 
@@ -81,27 +82,32 @@ const InventoryResources: React.FC = () => {
         return Array_year;
     }
 
-    //Delete btn_______________________________________________
-    const deleteBtn = (_id: string) => {
-        window.scrollTo(0, 0)
+    //Add btn_______________________________________________
+    const addBttn = (_id: string) => {
+        
+        if(dataDocuments.countTopYear < 3 || id !== "topThesis"){
+            window.scrollTo(0, 0);
 
-        setObjConfirm({ title: 'Delete Document', textInfo: 'Are you sure you want to delete this document?', _id: _id });
-        setTimeout(() => {
-            setConfirmLoad('confirm');
-        }, 500)
+            setObjConfirm({ title: 'Add Document', textInfo: `Are you sure you want to add this to ${(id === "topThesis" ? 'Top Thesis':'Other Thesis')}?`, _id: _id });
+            setTimeout(() => {
+                setConfirmLoad('confirm');
+            }, 500)
+        }else{
+            alert('Oops... You can only add 3 top thesis.');
+        }
 
     }
 
-    //Delete document condition events__________________________________
+    //Adding document condition events__________________________________
     const eventDelete = async (condition: any) => {
         if(condition === 'YES'){
             setConfirmLoad('loading');
             setObjLoading({ progress: Math.floor(Math.random()*80), textInfo: 'Waiting'  });
             let obj = {
                 method: 'POST',
-                url: 'https://directory-admin-server.vercel.app/delete_resources',
+                url: 'https://directory-admin-server.vercel.app/AddYearTop',
                 params: { /*this is for req.params */ },
-                data: { _id: objconfirm._id },
+                data: { _id: objconfirm._id, typeOfOtherYear: id === "topThesis" ? 'top3':'others'},
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -110,7 +116,7 @@ const InventoryResources: React.FC = () => {
             try{
                 const res = await axios(obj);
                 if(res.data.response){
-                    setObjLoading({ progress: 100, textInfo: 'Done deleting document.'  });
+                    setObjLoading({ progress: 100, textInfo: 'Done adding the document.'  });
 
                     setArrowLeftRight([0, 24]);
                     setRightLeArr(24);
@@ -175,7 +181,6 @@ const InventoryResources: React.FC = () => {
                 setIndexCount(indexCount-4);
             }
         }
-
     }
 
     //Fagination btn click number_______________________________________________________
@@ -204,7 +209,12 @@ const InventoryResources: React.FC = () => {
 
 
             
-            <div className='p-7'>   
+            <div className='p-7'>
+                { /*___Header title____*/ }   
+                <div className='rounded-lg shadow-md p-5 bg-white mb-5'>
+                    <p className='text-[20px] font-bold '>+Add <span className='text-[#1790E0]'>
+                        { (id === "topThesis" ? 'Top Thesis':'Other Thesis') }</span></p>
+                </div>
 
                 {/*___Header search____*/}
                 <div className='rounded-lg shadow-md p-9 bg-white mb-7'>
@@ -296,10 +306,19 @@ const InventoryResources: React.FC = () => {
                                         <p className='text-white text-[15px] mb-3 line-clamp-4'>{ a.title }</p>
                                     </div>
                                     <div className='w-full'>
-                                        <button onClick={ () => clickNavi(`/home/inventoryResources/${a._id}`) }
-                                        className='w-full py-[6px] rounded-[11px] mt-2 bg-[#28A745] text-white text-[13px] cursor-pointer'>Click to Edit</button>
-                                        <button onClick={ () => deleteBtn(a._id) }
-                                        className='w-full py-[6px] rounded-[11px] mt-2 bg-[#DC3545] text-white text-[13px] cursor-pointer'>Delete</button>
+                                        {
+                                            ( a.selectedTop === 'new' ? 
+                                            <button onClick={ () => addBttn(a._id) }
+                                            className='w-full py-[6px] rounded-[11px] mt-2 bg-[#28A745] text-white text-[13px] cursor-pointer'>
+                                                Add to { id === 'topThesis' ? 'Top Thesis':'Other Thesis' }
+                                            </button>
+                                            :
+                                            <button
+                                            className='w-full py-[6px] rounded-[11px] mt-2 bg-[#d1d1d1] text-black text-[13px] cursor-auto'>
+                                                Already Added to Top-year page
+                                            </button>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -329,5 +348,4 @@ const InventoryResources: React.FC = () => {
     )
 }
 
-export default InventoryResources;
-
+export default AddtopYear;

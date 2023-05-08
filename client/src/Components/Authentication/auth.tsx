@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const checkingAuth = async () => {
+const checkingAuth:any = async () => {
     try{
         let obj = {
             method: 'POST',

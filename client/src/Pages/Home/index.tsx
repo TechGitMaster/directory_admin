@@ -8,7 +8,7 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         if(!naviState){
-            /*'/home/addResource' */
+            /*'/home/addResource'*/
             navi('/home/topyearResources');
         }
     }, [navi])
@@ -59,7 +59,7 @@ const Home: React.FC = () => {
                     </div>
                 </div>
 
-                <Outlet />
+                <Outlet context={{ clickNavi }} />
             </div>
         </div>
         </>

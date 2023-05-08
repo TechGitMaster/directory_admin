@@ -4,17 +4,27 @@ const resource_column = require('../../databases/resources_column');
 const resourceF = resource_column();
 
 router.post('/uploadResources', async (req, res) => {
+    const { file, title, member, year, yearFilter, course, enableComment } = req.body.IData;
+    const { publicId, secureURI } = req.body;
+
+    let date = new Date;
+    let month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
     await new resourceF({
-        title: 'Hello',
-        member: '04',
-        year: '2021-2022',
-        course: 'BSIT',
-        documentURI: 'asdsad',
-        enableComment: 'true',
-        dateUploaded: 'Hello',
+        title: title,
+        member: member,
+        year: year,
+        yearFilter: yearFilter,
+        course: course,
+        documentURI: secureURI,
+        documentID: publicId,
+        enableComment: enableComment,
+        dateUploaded: `${ month[date.getMonth()] } ${ date.getDate() }, ${ date.getFullYear() }`,
+        selectedTop: 'new',
         deleteNot: 'new'
     }).save();
-    res.json({hello: 'hello'});
+
+    res.json({response: 'success'});
 });
 
 

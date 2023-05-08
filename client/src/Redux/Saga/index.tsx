@@ -1,32 +1,65 @@
-import { takeEvery, call, put} from 'redux-saga/effects';
+import { takeEvery, call, put, all} from 'redux-saga/effects';
 import axios from 'axios';
 
-import { UPLOAD_EDIT_DELETE_DATA, UPLOAD_EDIT_DELETE_DATA_SUCESS, ERROR_UPLOAD_EDIT_DELETE_DATA } from '../Actions';
+import { GET_DOCU, GET_DOCU_SUCC, GET_DOCU_ERR, GET_DOCU_YEAR, GET_DOCU_YEAR_SUCC, GET_DOCU_YEAR_ERR } from '../Actions';
 
-function* uploadDocu({ dataC, token, type }:any): any{
+//Inventory resources_________________________________________
+function* docuFunc({ dataC, type }:any): any{
+    const { course, search, year, skip, limit } = dataC;
+    
     try{
-        let url = 'https://directory-admin-server.vercel.app/';
         let obj = {
-            method: 'POST',
-            url: url+'uploadResources',
-            params: { /*this is for req.params */ },
-            data: { /*this is for req.body */ },
+            method: 'GET',
+            url: 'https://directory-admin-server.vercel.app/get_resources',
+            params: { course: course, search: search, year: year, skip: skip, limit: limit /* use this when your method is GET */},
+            data: { /* use this when your method is POST */ },
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Content-Type': 'application/json'
             },
         } as any;
 
     
         const response = yield call(axios, obj, { withCredentials: true });
-        console.log(response.data);
-
-        yield put({ res: 'succes', type: UPLOAD_EDIT_DELETE_DATA_SUCESS })
+        if(response.data.success){
+            yield all([put({ res: response.data.data, countTopYear: response.data.countTopYear, 
+                countOtherThesis: response.data.countOtherThesis, countAll: response.data.countAll, type: GET_DOCU_SUCC })])
+        }else{
+            yield put({ res: 'error', type: GET_DOCU_ERR }); 
+        }
     }catch(error){
-        yield put({ res: 'error', type: ERROR_UPLOAD_EDIT_DELETE_DATA });
+        yield put({ res: 'error', type: GET_DOCU_ERR });
     }
 }
 
+//YearTop resources________________________________________________
+function* yearTopFunc(): any{
+    try{
+        let obj = {
+            method: 'GET',
+            url: 'https://directory-admin-server.vercel.app/getYearTop_thesis',
+            params: { /* use this when your method is GET */},
+            data: { /* use this when your method is POST */ },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        } as any;
+
+    
+        const response = yield call(axios, obj, { withCredentials: true });
+        if(response.data.response){
+            yield put({ top3: response.data.top3, othersTop: response.data.othersTop, type: GET_DOCU_YEAR_SUCC })
+        }else{
+            yield put({ res: 'error', type: GET_DOCU_YEAR_ERR }); 
+        }
+    }catch(error){
+        console.log(error);
+        yield put({ res: 'error', type: GET_DOCU_YEAR_ERR });
+    }
+}
+
+
+
 export function* saga1(){
-    yield takeEvery(UPLOAD_EDIT_DELETE_DATA, uploadDocu);
+    yield takeEvery(GET_DOCU, docuFunc);
+    yield takeEvery(GET_DOCU_YEAR, yearTopFunc);
 }

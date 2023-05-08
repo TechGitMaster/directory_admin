@@ -1,9 +1,10 @@
-import { upload_edit_delete_data } from '../../Redux/Reducer';
+import { Resourcesfunc, YearTopCollectfunc } from '../../Redux/Reducer';
 
 //All imported reducers______________________________________________________
 
 const ReducerS = {
-    upload_edit_delete_data
+    Resourcesfunc,
+    YearTopCollectfunc
 }
 
 export default ReducerS;

@@ -6,7 +6,9 @@ import topR from '../assets/images/PNG/topR.png';
 import admin from '../assets/images/PNG/admin.png';
 import home from '../assets/images/PNG/home.png';
 import search from '../assets/images/PNG/search.png';
+import empty from '../assets/images/PNG/empty.png';
 import sample from '../assets/images/PNG/sample.png';
+import imgFrontPDF from '../assets/images/PNG/imgFrontPDF.png'
 
 export {  
     addR,
@@ -17,7 +19,8 @@ export {
     home,
     notFound,
     search,
-
+    empty,
+    imgFrontPDF,
 
     sample
 };

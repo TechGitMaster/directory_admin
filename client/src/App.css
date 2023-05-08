@@ -9,6 +9,7 @@
 /* Set the default font families */
 html {
     font-family: 'Inter', 'Inria Serif', sans-serif;
+    scroll-behavior: smooth;
 }
 
 /* Set the serif font family for headings */
