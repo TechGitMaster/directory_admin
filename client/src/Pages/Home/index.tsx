@@ -9,7 +9,7 @@ const Home: React.FC = () => {
     useEffect(() => {
         if(!naviState){
             /*'/home/addResource'*/
-            navi('/home/topyearResources');
+            navi('/home/addResource');
         }
     }, [navi])
 

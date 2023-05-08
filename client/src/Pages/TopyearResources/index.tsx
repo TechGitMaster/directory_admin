@@ -125,7 +125,7 @@ const TopyearResources: React.FC = () => {
                         <div className='bg-white rounded-lg grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
 
                         { 
-
+                        selector.type === 'done' ?
                         selector.top3.length > 0 ?  
                         selector.top3.map((a:any) => 
                         <div key={ Math.random() } className='p-1'>
@@ -159,7 +159,9 @@ const TopyearResources: React.FC = () => {
                         </div>
                         )
                         :
-                        'Empty'
+                        <p>Empty</p>
+                        :
+                        <p>Loading...</p>
                         }
 
                         </div>
@@ -174,7 +176,8 @@ const TopyearResources: React.FC = () => {
 
 
                         { 
-                        
+
+                        selector.type === 'done' ?
                         selector.othersTop.length > 0 ?  
                         selector.othersTop.map((a:any) =>
                         <div key={ Math.random() } className='p-1'>
@@ -208,7 +211,9 @@ const TopyearResources: React.FC = () => {
                         </div>
                         )
                         :
-                        'Empty'
+                        <p>Empty</p>
+                        :
+                        <p>Loading...</p>
                         }
 
                         </div>

@@ -272,7 +272,10 @@ const InventoryResources: React.FC = () => {
 
                     {/*__Document Resources__*/}
                     <div className={(dataDocuments.res.length > 0 ? 'grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1':'')}>
-                        {  dataDocuments.res.length > 0 ? dataDocuments.res.map((a:any) => 
+
+                        {  
+                        dataDocuments.type === 'done' ?
+                        dataDocuments.res.length > 0 ? dataDocuments.res.map((a:any) => 
                         <div key={ Math.random() } className='p-1'>
                             <div className='min-h-[300px] bg-[#2A2A2C] p-2 flex rounded-md'>
                                 <div className='w-[45%] rounded-l-md bg-white overflow-hidden relative' >
@@ -318,6 +321,8 @@ const InventoryResources: React.FC = () => {
                                 </div>
                             </div>
                         </div>
+                        :
+                        <p>Loading...</p>
                         }
 
 
