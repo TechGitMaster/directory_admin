@@ -82,6 +82,21 @@ const AddtopYear: React.FC = () => {
         return Array_year;
     }
 
+    //Click btn Course________________________________________________
+    const btnCourse = (course: string) => {
+        setSelected(course);
+        yearFilter.current.value = '';
+        searchFilter.current.value = '';
+
+        dispatch({ dataC: {
+            course: course, 
+            search: '', 
+            year: '', 
+            skip: 0, 
+            limit: 6
+        }, type: GET_DOCU });
+    }
+
     //Add btn_______________________________________________
     const addBttn = (_id: string) => {
         
@@ -105,7 +120,7 @@ const AddtopYear: React.FC = () => {
             setObjLoading({ progress: Math.floor(Math.random()*80), textInfo: 'Waiting'  });
             let obj = {
                 method: 'POST',
-                url: 'https://directory-admin-server.vercel.app/AddYearTop',
+                url: 'http://localhost:4000https://directory-admin-server.vercel.app/AddYearTop',
                 params: { /*this is for req.params */ },
                 data: { _id: objconfirm._id, typeOfOtherYear: id === "topThesis" ? 'top3':'others'},
                 headers: {
@@ -242,7 +257,7 @@ const AddtopYear: React.FC = () => {
 
                     <div className='flex flex-wrap ml-[-11px]'>
                         {
-                            courses.map(a => <div key={Math.random()} onClick={ () => setSelected(a) }
+                            courses.map(a => <div key={Math.random()} onClick={ () => btnCourse(a) }
                             className={'text-[15px] p-2 rounded-lg mx-3 cursor-pointer '+(selected === a ? 'bg-[#048BE2] text-white':'text-[#8C8681]')}>{a}</div>)
                         }
                     </div>
