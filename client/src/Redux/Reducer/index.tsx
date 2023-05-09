@@ -10,7 +10,8 @@ export const Resourcesfunc = (state = { res: [], countTopYear: 0, countOtherThes
             return { ...state, res: state.res, countTopYear: state.countTopYear, countOtherThesis: state.countTopYear,
                 countAll: state.countAll, type: 'done' }
         default:
-            state = { res: [], countTopYear: 0, countOtherThesis: 0, countAll: 0, type: 'loading' }
+            state = { res: state.res, countTopYear: state.countTopYear, countOtherThesis: state.countOtherThesis, 
+                countAll: state.countAll, type: 'loading' }
             return state;
     }
 }
@@ -23,7 +24,7 @@ export const YearTopCollectfunc = (state = { top3: [], othersTop: [], type: 'loa
         case GET_DOCU_YEAR_ERR:
             return { ...state, top3: state.top3, othersTop: state.othersTop, type: 'done' }
         default:
-            state = { top3: [], othersTop: [], type: 'loading' }
+            state = { top3: state.top3, othersTop: state.othersTop, type: 'loading' }
             return state;
     }
 }
