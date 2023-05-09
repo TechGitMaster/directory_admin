@@ -220,6 +220,7 @@ router.post('/updateSelected', async (req, res) => {
             yearFilter: yearFilter,
             course: course,
             enableComment: enableComment,
+            titleFirstLetter: title[0].toUpperCase()
         };
 
         if(fileType === 'object') {

@@ -21,7 +21,8 @@ router.post('/uploadResources', async (req, res) => {
         enableComment: enableComment,
         dateUploaded: `${ month[date.getMonth()] } ${ date.getDate() }, ${ date.getFullYear() }`,
         selectedTop: 'new',
-        deleteNot: 'new'
+        deleteNot: 'new',
+        titleFirstLetter: title[0].toUpperCase()
     }).save();
 
     res.json({response: 'success'});

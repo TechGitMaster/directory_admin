@@ -81,6 +81,21 @@ const InventoryResources: React.FC = () => {
         return Array_year;
     }
 
+    //Click btn Course________________________________________________
+    const btnCourse = (course: string) => {
+        setSelected(course);
+        yearFilter.current.value = '';
+        searchFilter.current.value = '';
+
+        dispatch({ dataC: {
+            course: course, 
+            search: '', 
+            year: '', 
+            skip: 0, 
+            limit: 6
+        }, type: GET_DOCU });
+    }
+
     //Delete btn_______________________________________________
     const deleteBtn = (_id: string) => {
         window.scrollTo(0, 0)
@@ -232,7 +247,7 @@ const InventoryResources: React.FC = () => {
 
                     <div className='flex flex-wrap ml-[-11px]'>
                         {
-                            courses.map(a => <div key={Math.random()} onClick={ () => setSelected(a) }
+                            courses.map(a => <div key={Math.random()} onClick={ () => btnCourse(a) }
                             className={'text-[15px] p-2 rounded-lg mx-3 cursor-pointer '+(selected === a ? 'bg-[#048BE2] text-white':'text-[#8C8681]')}>{a}</div>)
                         }
                     </div>
