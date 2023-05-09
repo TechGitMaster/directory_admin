@@ -4,10 +4,13 @@ const App = require('./App');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-app.use(cors());
+
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://thesisary-admin.vercel.app']
+}));
 
 // Set up options response for preflight requests
-app.options('*', cors());
+//app.options('*', cors());
 
 app.use(express.json())
 app.use('/', App)
