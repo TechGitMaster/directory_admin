@@ -120,7 +120,7 @@ const AddtopYear: React.FC = () => {
             setObjLoading({ progress: Math.floor(Math.random()*80), textInfo: 'Waiting'  });
             let obj = {
                 method: 'POST',
-                url: 'http://localhost:4000https://directory-admin-server.vercel.app/AddYearTop',
+                url: 'https://directory-admin-server.vercel.app/AddYearTop',
                 params: { /*this is for req.params */ },
                 data: { _id: objconfirm._id, typeOfOtherYear: id === "topThesis" ? 'top3':'others'},
                 headers: {
