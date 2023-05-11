@@ -27,7 +27,8 @@ const Home: React.FC = () => {
         <div className='flex'>
             <div className='w-[350px] min-h-[100vh] bg-[#181716] p-5 text-white'>
                 <div className='flex items-center mb-9'>
-                    <img src={logocircle} className='w-[45px] h-[45px]' alt='logo' />
+                    {/*<img src={logocircle} className='w-[45px] h-[45px]' alt='logo' />*/}
+                    <div className='w-[45px] h-[45px] rounded-[50%] bg-[gold]'></div>
                     <p className='text-[17px] text-[#DEAC00] font-bold ml-[11px]'>THESISARY</p>
                 </div>
 
