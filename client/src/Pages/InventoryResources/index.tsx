@@ -226,7 +226,7 @@ const InventoryResources: React.FC = () => {
                     <div className='flex items-center mb-6'>
                         <div className='w-[330px] h-[40px] px-[15px] border-2 rounded-md border-[#D1D5DB] flex items-center bg-[#F9FAFB]'>
                             <img src={search} alt="search" className='w-[21px] h-[21px]' />
-                            <input type="text" ref={ searchFilter } placeholder='Search for Thesis' className='w-[90%] outline-none ml-3 text-[15px]'  />
+                            <input type="text" ref={ searchFilter } placeholder='Search for Research' className='w-[90%] outline-none ml-3 text-[15px] bg-[#F9FAFB]'  />
                         </div>
                         <div className='ml-5 flex items-center'>
                             <p className='text-[15px] text-[#868789] mr-2'>Filter By:</p>

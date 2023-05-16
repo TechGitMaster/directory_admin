@@ -264,13 +264,13 @@ const ViewResources = () => {
                         loadingGet === 'true' ? 
                         <div>
                             <p className='text-[26px] text-black font-bold'>View <span className='text-[#1790E0]'>Resources</span> here</p>
-                            <p className='w-[65%] text-[14px] mt-1'>In this section you can now edit thesis documents any time you wanted, you can even see the comments of the students in this documents.</p>
+                            <p className='w-[65%] text-[14px] mt-1'>In this section you can now edit research documents any time you wanted, you can even see the comments of the students in this documents.</p>
 
                             <div className="flex mt-9">
                                 {/*__Left side___*/}
                                 <div className="w-[50%] pr-8">
                                     <p className="font-bold text-[16px] text[#291943] mb-2">Title:</p>
-                                    <textarea ref={ title } placeholder="Title of thesis..." className="mb-3 w-full h-[150px] rounded-xl p-4 font-inter border-2 border-[#EAEAEA] bg-[#f9f9f9] outline-none"></textarea>
+                                    <textarea ref={ title } placeholder="Title of research..." className="mb-3 w-full h-[150px] rounded-xl p-4 font-inter border-2 border-[#EAEAEA] bg-[#f9f9f9] outline-none"></textarea>
                                     <div className="grid grid-cols-2 mb-3">
                                         <div className="pr-2">
                                             <p className="font-bold text-[16px] text[#291943] mb-2">Member:</p>

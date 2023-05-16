@@ -108,7 +108,7 @@ const TopyearResources: React.FC = () => {
             <div className='p-8'>
                 <div className='rounded-md shadow-md p-7 bg-white'>
                     <p className='text-[26px] text-black font-bold'>Top-year <span className='text-[#1790E0]'>Resources</span></p>
-                    <p className='w-[65%] text-[14px] mt-1'>In this section you can see the current top 3 thesis of the year and other selected research. You can also add a thesis/research as you will.</p>
+                    <p className='w-[65%] text-[14px] mt-1'>In this section you can see the current top 3 research of the year and other selected research. You can also add a research as you will.</p>
 
                     <div className='flex mt-5'>
                         <button onClick={ () => clickNavi('/home/topyearResources/topThesis') }
