@@ -40,10 +40,10 @@ const AddtopYear: React.FC = () => {
     const [objLoading, setObjLoading] = useState<any>({});
 
 
-    const courses: Array<string> = ['ALL', 'BSCS', 'BSIT', 'BSCpE', 'BSBA', 'BSAIS', 'BSA', 'BSRTCS', 'BACOMM', 'BSTM', 'ACT', 'ART'];
+    const courses: Array<string> = ['ALL', 'STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T'];
 
     useEffect(() => {
-        setBreadCrumbs(['Management', 'Top-year Resources', (id === "topThesis" ? 'Top Thesis':'Other Thesis')]);
+        setBreadCrumbs(['Management', 'Top-year Resources', (id === "topThesis" ? 'Top Research':'Other Research')]);
         buttonSearch();
     }, []);
 
@@ -103,12 +103,12 @@ const AddtopYear: React.FC = () => {
         if(dataDocuments.countTopYear < 3 || id !== "topThesis"){
             window.scrollTo(0, 0);
 
-            setObjConfirm({ title: 'Add Document', textInfo: `Are you sure you want to add this to ${(id === "topThesis" ? 'Top Thesis':'Other Thesis')}?`, _id: _id });
+            setObjConfirm({ title: 'Add Document', textInfo: `Are you sure you want to add this to ${(id === "topThesis" ? 'Top Research':'Other Research')}?`, _id: _id });
             setTimeout(() => {
                 setConfirmLoad('confirm');
             }, 500)
         }else{
-            alert('Oops... You can only add 3 top thesis.');
+            alert('Oops... You can only add 3 top Research.');
         }
 
     }
@@ -228,7 +228,7 @@ const AddtopYear: React.FC = () => {
                 { /*___Header title____*/ }   
                 <div className='rounded-lg shadow-md p-5 bg-white mb-5'>
                     <p className='text-[20px] font-bold '>+Add <span className='text-[#1790E0]'>
-                        { (id === "topThesis" ? 'Top Thesis':'Other Thesis') }</span></p>
+                        { (id === "topThesis" ? 'Top Research':'Other Research') }</span></p>
                 </div>
 
                 {/*___Header search____*/}
@@ -236,7 +236,7 @@ const AddtopYear: React.FC = () => {
                     <div className='flex items-center mb-6'>
                         <div className='w-[330px] h-[40px] px-[15px] border-2 rounded-md border-[#D1D5DB] flex items-center bg-[#F9FAFB]'>
                             <img src={search} alt="search" className='w-[21px] h-[21px]' />
-                            <input type="text" ref={ searchFilter } placeholder='Search for Thesis' className='w-[90%] outline-none ml-3 text-[15px]'  />
+                            <input type="text" ref={ searchFilter } placeholder='Search for Research' className='w-[90%] outline-none ml-3 text-[15px]'  />
                         </div>
                         <div className='ml-5 flex items-center'>
                             <p className='text-[15px] text-[#868789] mr-2'>Filter By:</p>
@@ -328,7 +328,7 @@ const AddtopYear: React.FC = () => {
                                             ( a.selectedTop === 'new' ? 
                                             <button onClick={ () => addBttn(a._id) }
                                             className='w-full py-[6px] rounded-[11px] mt-2 bg-[#28A745] text-white text-[13px] cursor-pointer'>
-                                                Add to { id === 'topThesis' ? 'Top Thesis':'Other Thesis' }
+                                                Add to { id === 'topThesis' ? 'Top Research':'Other Research' }
                                             </button>
                                             :
                                             <button

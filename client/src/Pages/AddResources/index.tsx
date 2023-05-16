@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
 import BreadCrumbs from "../../Components/Breadcrumbs";
 
 import { Viewer, Worker, PdfJs } from '@react-pdf-viewer/core';
@@ -19,7 +17,7 @@ const AddResources = () => {
     const title = useRef<any>('');
     const member = useRef<any>('');
     const year = useRef<any>('Select a year');
-    const course = useRef<any>('Select a course');  
+    const course = useRef<any>('Select a Track');  
 
     //File and enable comment useState____________________________________________
     const [enableComment, setEnableComment] = useState<string>('false');
@@ -32,7 +30,7 @@ const AddResources = () => {
     const [objLoading, setObjLoading] = useState<any>({});
 
     const breadCrumbs = ['Management', 'Add Resources'];
-    const courses: Array<string> = ['BSCS', 'BSIT', 'BSCpE', 'BSBA', 'BSAIS', 'BSA', 'BSRTCS', 'BACOMM', 'BSTM', 'ACT', 'ART'];
+    const courses: Array<string> = ['STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T'];
 
     //Toolbar_____________________________________________
     const toolbarPluginInstance = toolbarPlugin();
@@ -84,7 +82,7 @@ const AddResources = () => {
         if(title.current.value.trim().length > 0){
             if(member.current.value !== 'Number of Member'){
                 if(year.current.value !== 'Select a Year'){
-                    if(course.current.value !== 'Select a Course'){
+                    if(course.current.value !== 'Select a Track'){
                         if(validFiles){
                             if(await checkingAuth() !== 'false'){
                                 
@@ -114,7 +112,7 @@ const AddResources = () => {
                                         title.current.value = "";
                                         member.current.value = "Number of Member";
                                         year.current.value = "Select a Year";
-                                        course.current.value = "Select a Course"
+                                        course.current.value = "Select a Track"
                                         setFile(URL.createObjectURL(new Blob()));
                                         setValidFiles(false);
                                     }else{
@@ -129,7 +127,7 @@ const AddResources = () => {
                             alert('Please select a file or the file must be a PDF.');
                         }
                     }else{
-                        alert('Please select a Course.');
+                        alert('Please select a Track.');
                     }
                 }else{
                     alert('Please select a Year.');
@@ -166,7 +164,7 @@ const AddResources = () => {
                                     <p className="font-bold text-[16px] text[#291943] mb-2">Member:</p>
                                     <select ref={ member } className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 ">
                                         <option selected>Number of Member</option>
-                                        { '1,2,3,4'.split(',').map(a => <option value={a}>{a}</option>) }
+                                        { '1,2,3,4,5,6,7,8,9'.split(',').map(a => <option value={a}>{a}</option>) }
                                     </select>
                                 </div>
                                 <div>
@@ -180,9 +178,9 @@ const AddResources = () => {
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 mb-3">
-                                <p className="font-bold text-[16px] text[#291943] mb-2">Course:</p>
+                                <p className="font-bold text-[16px] text[#291943] mb-2">Track:</p>
                                 <select ref={ course } className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 ">
-                                    <option selected>Select a Course</option>
+                                    <option selected>Select a Track</option>
                                     { courses.map(a => <option value={a}>{a}</option>) }
                                 </select>
                             </div>

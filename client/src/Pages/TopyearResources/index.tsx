@@ -112,14 +112,14 @@ const TopyearResources: React.FC = () => {
 
                     <div className='flex mt-5'>
                         <button onClick={ () => clickNavi('/home/topyearResources/topThesis') }
-                        className='px-[25px] py-[10px] text-[14px] text-white bg-[#DEAC00] rounded-lg mr-3'>+Top Thesis</button>
+                        className='px-[25px] py-[10px] text-[14px] text-white bg-[#DEAC00] rounded-lg mr-3'>+Top Research</button>
                         <button onClick={ () => clickNavi('/home/topyearResources/othersThesis') }
                         className='px-[25px] py-[10px] text-[14px] text-white bg-[#DEAC00] rounded-lg'>+Other Research</button>
                     </div>
 
                     {/*____Top 3 Thesis___*/}
                     <div className='mt-9'>
-                        <p className='text-[24px] font-bold my-[5px]'>Top 3 Thesis</p>
+                        <p className='text-[24px] font-bold my-[5px]'>Top 3 Research</p>
 
                         {/*__Document Resourecs__*/}
                         <div className='bg-white rounded-lg grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
@@ -169,7 +169,7 @@ const TopyearResources: React.FC = () => {
 
                     {/*____Other Research___*/}
                     <div className='mt-9'>
-                        <p className='text-[24px] font-bold my-[5px]'>Other Thesis</p>
+                        <p className='text-[24px] font-bold my-[5px]'>Other Research</p>
 
                         {/*__Document Resourecs__*/}
                         <div className='bg-white rounded-lg grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>

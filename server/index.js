@@ -2,10 +2,12 @@ const express = require('express');
 const app = express();
 const App = require('./App');
 const mongoose = require('mongoose');
-//const cors = require('cors');
 
 
-/*app.use(cors({
+//This is just for second option if header in vercel.json have an error when uploading to vercel________________________
+//this is only for local___________________________________
+/*const cors = require('cors');
+app.use(cors({
     origin: ['http://localhost:3000', 'https://thesisary-admin.vercel.app']
 }));*/
 
@@ -27,9 +29,9 @@ const database = async () => {
 database();
 
 //this is only for local___________________________________
-mongoose.connection.once('open', () => { 
+/*mongoose.connection.once('open', () => { 
     app.listen(4000 || process.env.PORT)    
-});
+});*/
 
 
 //this is only for vercel__________________________________

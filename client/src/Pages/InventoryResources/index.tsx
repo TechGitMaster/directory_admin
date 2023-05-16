@@ -40,7 +40,7 @@ const InventoryResources: React.FC = () => {
     const [objLoading, setObjLoading] = useState<any>({});
 
 
-    const courses: Array<string> = ['ALL', 'BSCS', 'BSIT', 'BSCpE', 'BSBA', 'BSAIS', 'BSA', 'BSRTCS', 'BACOMM', 'BSTM', 'ACT', 'ART'];
+    const courses: Array<string> = ['ALL', 'STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T'];
 
     useEffect(() => {
         buttonSearch();

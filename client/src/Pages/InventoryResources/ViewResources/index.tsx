@@ -27,7 +27,7 @@ const ViewResources = () => {
     const title = useRef<any>('');
     const member = useRef<any>('');
     const year = useRef<any>('Select a year');
-    const course = useRef<any>('Select a course');  
+    const course = useRef<any>('Select a Track');  
 
     //File and enable comment useState____________________________________________
     const [enableComment, setEnableComment] = useState<string>('false');
@@ -46,8 +46,8 @@ const ViewResources = () => {
     const [objLoading, setObjLoading] = useState<any>({});
 
     const breadCrumbs = ['Management', 'Inventory Resources', `${id}`];
-    const courses: Array<string> = ['BSCS', 'BSIT', 'BSCpE', 'BSBA', 'BSAIS', 'BSA', 'BSRTCS', 'BACOMM', 'BSTM', 'ACT', 'ART'];
-
+    const courses: Array<string> = ['STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T'];
+    
     //Toolbar_____________________________________________
     const toolbarPluginInstance = toolbarPlugin();
     const { renderDefaultToolbar, Toolbar } = toolbarPluginInstance;
@@ -180,7 +180,7 @@ const ViewResources = () => {
             if(arr[0].trim().length > 0){
                 if(arr[1] !== 'Number of Member'){
                     if(years !== 'Select a Year'){
-                        if(arr[3] !== 'Select a Course'){
+                        if(arr[3] !== 'Select a Track'){
                             if(validFiles){
                                 if(await checkingAuth() !== 'false'){
                                     setObjLoading({ progress: Math.floor(Math.random()*70), textInfo: "Waiting", })
@@ -226,7 +226,7 @@ const ViewResources = () => {
                                 alert('Please select a file or the file must be a PDF.');
                             }
                         }else{
-                            alert('Please select a Course.');
+                            alert('Please Select a Track.');
                         }
                     }else{
                         alert('Please select a Year.');
@@ -276,7 +276,7 @@ const ViewResources = () => {
                                             <p className="font-bold text-[16px] text[#291943] mb-2">Member:</p>
                                             <select ref={ member } className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 ">
                                                 <option selected>Number of Member</option>
-                                                { '1,2,3,4'.split(',').map(a => <option value={a}>{a}</option>) }
+                                                { '1,2,3,4,5,6,7,8,9'.split(',').map(a => <option value={a}>{a}</option>) }
                                             </select>
                                         </div>
                                         <div>
@@ -292,7 +292,7 @@ const ViewResources = () => {
                                     <div className="grid grid-cols-1 mb-3">
                                         <p className="font-bold text-[16px] text[#291943] mb-2">Course:</p>
                                         <select ref={ course } className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 ">
-                                            <option selected>Select a Course</option>
+                                            <option selected>Select a Track</option>
                                             { courses.map(a => <option value={a}>{a}</option>) }
                                         </select>
                                     </div>
