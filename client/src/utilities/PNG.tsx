@@ -1,5 +1,4 @@
 import notFound from '../assets/images/PNG/notFound.png';
-import logocircle from '../assets/images/PNG/logocircle.png';
 import addR from '../assets/images/PNG/addR.png';
 import invenR from '../assets/images/PNG/invenR.png';
 import topR from '../assets/images/PNG/topR.png';
@@ -14,7 +13,6 @@ export {
     addR,
     invenR,
     topR,
-    logocircle,
     admin,
     home,
     notFound,

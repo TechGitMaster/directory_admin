@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { logocircle, addR, invenR, topR, admin } from '../../utilities/PNG';
+import { addR, invenR, topR, admin } from '../../utilities/PNG';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
