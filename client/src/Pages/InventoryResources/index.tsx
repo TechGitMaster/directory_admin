@@ -40,7 +40,7 @@ const InventoryResources: React.FC = () => {
     const [objLoading, setObjLoading] = useState<any>({});
 
 
-    const courses: Array<string> = ['ALL', 'STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T'];
+    const courses: Array<string> = ['ALL', 'STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T', 'Home Economics'];
 
     useEffect(() => {
         buttonSearch();
@@ -329,7 +329,7 @@ const InventoryResources: React.FC = () => {
                                 <div className='flex justify-center'>
                                     <img src={ empty } alt="empty" className='max-w-[340px] max-h-[270px]' />
                                 </div>
-                                <p className='text-[26px] font-bold text-center mt-5 mb-2'>Inventory is <span className='text-[#1790E0]'>Empty</span></p>
+                                <p className='text-[26px] font-bold text-center mt-5 mb-2'>Inventory is <span className='text-[#D75601]'>Empty</span></p>
                                 <div className='flex justify-center'>
                                     <p className='w-[80%] text-[14px] text-center'>If you see this maybe the inventory is empty, or your query did not find any related documents, 
                                     or you have internet connection problem.</p>

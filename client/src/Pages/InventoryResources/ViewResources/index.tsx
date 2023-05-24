@@ -46,7 +46,7 @@ const ViewResources = () => {
     const [objLoading, setObjLoading] = useState<any>({});
 
     const breadCrumbs = ['Management', 'Inventory Resources', `${id}`];
-    const courses: Array<string> = ['STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T'];
+    const courses: Array<string> = ['STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T', 'Home Economics'];
     
     //Toolbar_____________________________________________
     const toolbarPluginInstance = toolbarPlugin();
@@ -263,7 +263,7 @@ const ViewResources = () => {
                         loadingGet === 'new' ? 'Loading....': 
                         loadingGet === 'true' ? 
                         <div>
-                            <p className='text-[26px] text-black font-bold'>View <span className='text-[#1790E0]'>Resources</span> here</p>
+                            <p className='text-[26px] text-black font-bold'>View <span className='text-[#D75601]'>Resources</span> here</p>
                             <p className='w-[65%] text-[14px] mt-1'>In this section you can now edit research documents any time you wanted, you can even see the comments of the students in this documents.</p>
 
                             <div className="flex mt-9">
@@ -338,7 +338,7 @@ const ViewResources = () => {
                                 <div className='flex justify-center'>
                                     <img src={ empty } alt="empty" className='max-w-[340px] max-h-[270px]' />
                                 </div>
-                                <p className='text-[26px] font-bold text-center mt-5 mb-2'>Can't <span className='text-[#1790E0]'>Find</span> Document</p>
+                                <p className='text-[26px] font-bold text-center mt-5 mb-2'>Can't <span className='text-[#D75601]'>Find</span> Document</p>
                                 <div className='flex justify-center'>
                                     <p className='w-[80%] text-[14px] text-center'>If you see this maybe the document you looking for is no record in the database, or 
                                     you have internet problem.</p>

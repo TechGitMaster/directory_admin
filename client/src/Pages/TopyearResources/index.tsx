@@ -107,8 +107,8 @@ const TopyearResources: React.FC = () => {
 
             <div className='p-8'>
                 <div className='rounded-md shadow-md p-7 bg-white'>
-                    <p className='text-[26px] text-black font-bold'>Top-year <span className='text-[#1790E0]'>Resources</span></p>
-                    <p className='w-[65%] text-[14px] mt-1'>In this section you can see the current top 3 research of the year and other selected research. You can also add a research as you will.</p>
+                    <p className='text-[26px] text-black font-bold'>Top-year <span className='text-[#D75601]'>Resources</span></p>
+                    <p className='w-[65%] text-[14px] mt-1'>In this section you can see the current Overall Top Three Research of the year and other selected research. You can also add a research as you will.</p>
 
                     <div className='flex mt-5'>
                         <button onClick={ () => clickNavi('/home/topyearResources/topThesis') }
@@ -119,7 +119,7 @@ const TopyearResources: React.FC = () => {
 
                     {/*____Top 3 Thesis___*/}
                     <div className='mt-9'>
-                        <p className='text-[24px] font-bold my-[5px]'>Top 3 Research</p>
+                        <p className='text-[24px] font-bold my-[5px]'>Overall Top Three Research</p>
 
                         {/*__Document Resourecs__*/}
                         <div className='bg-white rounded-lg grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>

@@ -30,7 +30,7 @@ const AddResources = () => {
     const [objLoading, setObjLoading] = useState<any>({});
 
     const breadCrumbs = ['Management', 'Add Resources'];
-    const courses: Array<string> = ['STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T'];
+    const courses: Array<string> = ['STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T', 'Home Economics'];
 
     //Toolbar_____________________________________________
     const toolbarPluginInstance = toolbarPlugin();
@@ -151,7 +151,7 @@ const AddResources = () => {
 
             <div className='p-8'>
                 <div className='rounded-md shadow-md p-7 bg-white'>
-                    <p className='text-[26px] text-black font-bold'>Upload <span className='text-[#1790E0]'>Resources</span> here</p>
+                    <p className='text-[26px] text-black font-bold'>Upload <span className='text-[#D75601]'>Resources</span> here</p>
                     <p className='w-[65%] text-[14px] mt-1'>In this section you can now add research documents any time you wanted. By hitting the submit button it will automatically add into Inventory resources.</p>
                 
                     <div className="flex mt-9">

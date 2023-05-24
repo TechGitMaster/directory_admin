@@ -48,7 +48,7 @@ const Login: React.FC = () => {
 
     return (
         <>
-        <div className='h-[100vh] flex justify-center items-center bg-[#1790E0]'>
+        <div className='h-[100vh] flex justify-center items-center bg-[#D75601]'>
             <div className='w-[400px] min-h-[200px] bg-white rounded-md p-5'>
                 <p className='text-center text-[#0063A8] text-[28px] font-bold mt-5'>Login Admin</p>
                 <div className='mt-10 px-4'>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addR, invenR, topR, admin } from '../../utilities/PNG';
+import { addR, invenR, topR, admin, logocircle } from '../../utilities/PNG';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 const Home: React.FC = () => {
@@ -27,8 +27,7 @@ const Home: React.FC = () => {
         <div className='flex'>
             <div className='w-[350px] min-h-[100vh] bg-[#181716] p-5 text-white'>
                 <div className='flex items-center mb-9'>
-                    {/*<img src={logocircle} className='w-[45px] h-[45px]' alt='logo' />*/}
-                    <div className='w-[45px] h-[45px] rounded-[50%] bg-[gold]'></div>
+                    <img src={logocircle} className='w-[45px] h-[45px]' alt='logo' />
                     <p className='text-[17px] text-[#DEAC00] font-bold ml-[11px]'>THESISARY</p>
                 </div>
 
