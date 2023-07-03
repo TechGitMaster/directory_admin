@@ -68,8 +68,12 @@ const UploadFile = async ({ items }: inter) => {
 
         let waiting = await axios(obj);
         return waiting.data.response === 'success';
-    } catch (error) {
-        alert('Opps.. Something is wrong please check your internet connection.')
+    } catch (error:any) {
+        if(error.response.data.error.message.split(' ').includes('10485760.')){
+            alert('The file size the system will accept is less than 15 MB.');
+        }else{
+            alert('Opps.. Something is wrong please check your internet connection.')
+        }
         return false;
     }
 }

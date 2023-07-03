@@ -4,7 +4,8 @@ const App = require('./App');
 const mongoose = require('mongoose');
 
 
-//This is just for second option if header in vercel.json have an error when uploading to vercel________________________
+//1. This is just for second option if header in vercel.json have an error when uploading to vercel________________________
+//2. Also delete "headers" in vercel.json if have an error when uploading to vercel________________________
 //this is only for local___________________________________
 /*const cors = require('cors');
 app.use(cors({

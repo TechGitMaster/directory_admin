@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const resource_column = require('../../databases/resources_column');
 const resourceF = resource_column();
+const searchTitle_column = require('../../databases/searchTitle_column');
+const searchTitleF = searchTitle_column();
 
 router.post('/uploadResources', async (req, res) => {
     const { file, title, member, year, yearFilter, course, enableComment } = req.body.IData;
@@ -23,9 +25,14 @@ router.post('/uploadResources', async (req, res) => {
         selectedTop: 'new',
         deleteNot: 'new',
         titleFirstLetter: title[0].toUpperCase()
-    }).save();
+    }).save().then(async (data) => {
+        await new searchTitleF({
+            title: title,
+            id_document: data._id
+        }).save();
 
-    res.json({response: 'success'});
+        res.json({response: 'success'});
+    });
 });
 
 

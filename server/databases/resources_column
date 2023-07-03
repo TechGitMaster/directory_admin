@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+
 module.exports = () => {
     let schema_column = new Schema();
 

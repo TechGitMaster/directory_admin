@@ -3,6 +3,9 @@ const router = express.Router();
 const resources_column = require('../../databases/resources_column');
 const column_resources = resources_column();
 const cloudinary = require('cloudinary');
+const searchTitle_column = require('../../databases/searchTitle_column');
+const searchTitleF = searchTitle_column();
+
 
 cloudinary.config({
     cloud_name: 'dutfzeatp',
@@ -234,7 +237,11 @@ router.post('/updateSelected', async (req, res) => {
         column_resources.updateOne({
             _id: _id
          }, {$set: obj}).then((err, ress) => {
-                res.json({response: 'success'});
+                searchTitleF.updateOne({
+                    id_document: _id
+                }, {$set: { title: title }}).then((err, resss) => {
+                    res.json({response: 'success'});
+                })
             }
          );
     }catch(error){
@@ -251,7 +258,8 @@ router.post('/delete_resources', async (req, res) => {
         const data = await column_resources.find({ _id: req.body._id });
 
         await cloudinary.uploader.destroy(data[0].documentID); //delete file to cloudinary___
-        await column_resources.deleteOne({ _id: req.body._id }); //delete data to mongodb___
+        await column_resources.deleteOne({ _id: req.body._id }); //delete data to resouces_documents mongodb___
+        await searchTitleF.deleteOne({ id_document: req.body._id }); //delete data to search_documents mongodb___
 
         res.json({ response: true });
     }catch(err){
