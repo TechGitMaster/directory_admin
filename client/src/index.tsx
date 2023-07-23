@@ -18,6 +18,7 @@ import InventoryResources from './Pages/InventoryResources';
 import TopyearResources from './Pages/TopyearResources';
 import ViewResources from './Pages/InventoryResources/ViewResources';
 import AddtopYear from './Pages/TopyearResources/AddTopYear';
+import AdminAccount from './Pages/adminAccount';
 
 
 const root = ReactDOMClient.createRoot(document.querySelector('#root') as HTMLDivElement);
@@ -40,6 +41,7 @@ root.render(
                             <Route path='inventoryResources' element={ <InventoryResources /> } />
                             <Route path='inventoryResources/:id' element={ <ViewResources /> } />
                             <Route path='topyearResources' element={ <TopyearResources /> } />
+                            <Route path='adminAccount' element={ <AdminAccount /> }></Route>
                             <Route path='topyearResources/:id' element={ <AddtopYear /> } />
                         </Route>
                     </Route>

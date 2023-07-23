@@ -24,7 +24,13 @@ router.post('/uploadResources', async (req, res) => {
         dateUploaded: `${ month[date.getMonth()] } ${ date.getDate() }, ${ date.getFullYear() }`,
         selectedTop: 'new',
         deleteNot: 'new',
-        titleFirstLetter: title[0].toUpperCase()
+        titleFirstLetter: title[0].toUpperCase(),
+        allRate: 0,
+        star1: 0,
+        star2: 0,
+        star3: 0,
+        star4: 0,
+        star5: 0,
     }).save().then(async (data) => {
         await new searchTitleF({
             title: title,

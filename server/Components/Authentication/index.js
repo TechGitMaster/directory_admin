@@ -7,12 +7,8 @@ const router = express.Router();
 
 router.post('/login', (req, res)  => {
     const { username, pass } = req.body;
-    if(username === 'root' && pass === 'root'){
-        const accessToken = jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3h' });
-        res.json({ success: 'true', token: accessToken });
-    }else{
-        res.json({ success: 'false' })
-    }
+    const accessToken = jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '3h' });
+    res.json({ success: 'true', token: accessToken });
 });
 
 

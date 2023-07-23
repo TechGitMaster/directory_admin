@@ -8,40 +8,51 @@ const Login: React.FC = () => {
     const usernameRef = useRef<any>('');
     const passRef = useRef<any>('');
 
+
+    const objData = (method: string, url: string, params: any, data: any) => {
+        return {
+            method: method,
+            url: 'https://directory-admin-server.vercel.app/'+url,
+            params: params /*this is for req.params */ ,
+            data: data,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }
+    }
+
     //Login_______________________________________________________
     const bttn = () => {
         setlogErr(['', '']);
-        if(usernameRef.current.value === 'root' && passRef.current.value === 'root'){
-            let obj = {
-                method: 'POST',
-                url: 'https://directory-admin-server.vercel.app/login',
-                params: { /*this is for req.params */ },
-                data: { username: 'root', pass: 'root' },
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            } as any;
-    
-            axios(obj).then((res: any) => {
-                if(res.data.success === 'true'){
-                    localStorage.setItem('_SdTok', res.data.token);
-                    window.location.reload();
+
+        let str1 = '', str2 = '';
+
+        if(usernameRef.current.value.trim().length > 0 && passRef.current.value.trim().length > 0){
+
+            axios(objData('GET', 'loginAcc', { username: usernameRef.current.value, password: passRef.current.value }, {})).then((res: any) => {
+                console.log(res.data.success);
+                if(res.data.success){
+                    axios(objData('POST', 'login', {}, { username: 'root', pass: passRef.current.value })).then((res: any) => {
+                        if(res.data.success === 'true'){
+                            localStorage.setItem('_SdTok', res.data.token);
+                            window.location.reload();
+                        }
+                    })
+                }else{
+                    str1 = 'The username might be wrong.';
+                    str2 = 'The password might be wrong.';
+                    setlogErr([str1, str2]);
                 }
             })
+
         }else{
-            let str1 = '', str2 = '';
             if(usernameRef.current.value.trim().length === 0){
                 str1 = 'Input field is empty.';
-            }else if(usernameRef.current.value !== 'root'){
-                str1 = 'The username might be wrong.';
             }
 
             if(passRef.current.value.trim().length === 0){
                 str2 = 'Input field is empty.';
-            }else if(passRef.current.value !== 'root'){
-                str2 = 'The password might be wrong.';
             }
-
             setlogErr([str1, str2]);
         }
     }

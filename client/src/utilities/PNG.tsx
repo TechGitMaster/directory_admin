@@ -9,6 +9,7 @@ import empty from '../assets/images/PNG/empty.png';
 import sample from '../assets/images/PNG/sample.png';
 import logocircle from '../assets/images/PNG/logocircle.png'
 import imgFrontPDF from '../assets/images/PNG/imgFrontPDF.png'
+import adminUser from '../assets/images/PNG/adminUser.png';
 
 export {  
     addR,
@@ -21,6 +22,7 @@ export {
     empty,
     imgFrontPDF,
     logocircle,
+    adminUser,
 
     sample
 };

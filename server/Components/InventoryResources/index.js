@@ -5,7 +5,8 @@ const column_resources = resources_column();
 const cloudinary = require('cloudinary');
 const searchTitle_column = require('../../databases/searchTitle_column');
 const searchTitleF = searchTitle_column();
-
+const rate_column = require('../../databases/rate_column');
+const column_rate = rate_column();
 
 cloudinary.config({
     cloud_name: 'dutfzeatp',
@@ -260,7 +261,8 @@ router.post('/delete_resources', async (req, res) => {
         await cloudinary.uploader.destroy(data[0].documentID); //delete file to cloudinary___
         await column_resources.deleteOne({ _id: req.body._id }); //delete data to resouces_documents mongodb___
         await searchTitleF.deleteOne({ id_document: req.body._id }); //delete data to search_documents mongodb___
-
+        await column_rate.deleteMany({ id_document: req.body._id }); //delete data to rate_documents mongodb___
+        
         res.json({ response: true });
     }catch(err){
         res.json({ response: false });

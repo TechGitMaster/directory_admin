@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import { Rating } from 'react-simple-star-rating';
 
 
 import { Viewer, Worker, PdfJs } from '@react-pdf-viewer/core';
@@ -48,6 +48,13 @@ const ViewResources = () => {
     const breadCrumbs = ['Management', 'Inventory Resources', `${id}`];
     const courses: Array<string> = ['STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T', 'Home Economics'];
     
+
+    //Rating_____________________________________________________________________
+    const [showLess, setShowLess] = useState<boolean>(false);
+    const [rateCalculated, setRateCalculated] = useState(0);
+    const [getData, setGetData] = useState<any>({});
+
+
     //Toolbar_____________________________________________
     const toolbarPluginInstance = toolbarPlugin();
     const { renderDefaultToolbar, Toolbar } = toolbarPluginInstance;
@@ -98,6 +105,15 @@ const ViewResources = () => {
                         data.course,
                         data.enableComment,
                     ]);
+
+
+                    //Calculate rate________________________________________
+                    let arr = [data.star1, data.star2, data.star3, data.star4, data.star5]
+                    let WeightedSum = arr.map((a, i) => (a*(i+1))).reduce((acc, curr) => acc+curr);
+
+                    setRateCalculated(Number.isNaN(Number((WeightedSum/data.allRate).toFixed(2))) ? 0:Number((WeightedSum/data.allRate).toFixed(2)));
+                    setGetData(data);
+
                 }
 
                 setLoadingGet(`${res.data.response}`);
@@ -232,7 +248,7 @@ const ViewResources = () => {
                         alert('Please select a Year.');
                     }
                 }else{
-                    alert('Please select Number of Member.');
+                    alert('Please select Number of Pax.');
                 }
             }else{
                 alert('Title is empty.');
@@ -258,6 +274,57 @@ const ViewResources = () => {
             }
 
             <div className='p-8'>
+
+                <div className='rounded-md shadow-md p-7 bg-white mb-5'>
+                    <div>
+                        <p className='font-semibold text-[19px]'>Ratings of Viewer</p>
+                        <div className='my-3'>
+                            <div className='flex items-center mb-1'>
+                                <span className='text-[28px] font-semibold'>{ rateCalculated }/5</span>
+                                <div className='ml-2'>
+                                    <Rating
+                                        SVGstyle={ { 'display':'inline', 'marginTop': '-4px' } }
+                                        size={22}
+                                        readonly={ true }
+                                        allowFraction={ true }
+                                        initialValue={ rateCalculated === 5 ? 5: rateCalculated !==0 ? rateCalculated % 1 === 0 ? rateCalculated:rateCalculated-1: 0 }
+                                        showTooltip={ false }
+                                        tooltipStyle={{ 'fontSize': '13px' }}
+                                    />
+                                </div>
+                            </div>
+                            <p className='text-[15px] text-[#565454]'>{ getData.allRate } ratings</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className='flex justify-between'>
+                            <p className='font-semibold text-[17px]'>Board Rating</p>
+                            <p onClick={ () => setShowLess((a) => !a) } className='underline text-[#7664ec] cursor-pointer text-[15px] select-none'>
+                                { showLess ? 'Show less': 'Show Rating' }
+                            </p>
+                        </div>
+                    {
+                        showLess ? 
+                            [getData.star5, getData.star4, getData.star3, getData.star2, getData.star1].map((a, i) => 
+                            <div key={ Math.random() } className='my-2 text-[14px] text-[#565454]'>
+                                <div className='flex justify-between w-full mx-auto'>
+                                    <p>{ Math.floor(5-i) } star</p>
+                                    <p>{a === 0 && getData.allRate === 0 ? 0: Math.floor((a * 100) / getData.allRate)}%</p>
+                                </div>
+                        
+                                <div className='h-[14px] overflow-hidden rounded-[20px] bg-[#E4E3DB] '>
+                                    <div className={`h-[14px] rounded-[20px] bg-[#FACA51]`} style={{ width: (a === 0 && getData.allRate === 0 ? 0: Math.floor((a * 100) / getData.allRate))+'%' }}></div>
+                                </div>
+                            </div>
+                            )
+                        :
+                        ''
+                    }
+
+                    </div>
+                </div>
+
                 <div className='rounded-md shadow-md p-7 bg-white'>
                     {
                         loadingGet === 'new' ? 'Loading....': 
@@ -296,18 +363,10 @@ const ViewResources = () => {
                                             { courses.map(a => <option value={a}>{a}</option>) }
                                         </select>
                                     </div>
-                                    <div className="grid grid-cols-1 mb-3">
+                                    <div className="grid grid-cols-1 mb-8">
                                         <p className="font-bold text-[16px] text[#291943] mb-2">File document:</p>
                                         <input onChange={ validFile } type="file" accept="application/pdf" multiple={false}
                                         className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2.5" />
-                                    </div>
-                                    <div className="grid grid-cols-1 mb-10">
-                                        <div className="flex items-center">
-                                            <input checked={ enableComment === 'true' ? true: false } 
-                                            onClick={ () => setEnableComment(`${enableComment==='false'}`) } 
-                                            type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-2 " />
-                                            <span className="text-[15px] font-medium text-gray-900 ml-2 mt-[2px]">Check to enable comment section</span>
-                                        </div>
                                     </div>
                                     <div className="flex justify-center">
                                         <button onClick={ uploadDocu }

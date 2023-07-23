@@ -184,17 +184,10 @@ const AddResources = () => {
                                     { courses.map(a => <option value={a}>{a}</option>) }
                                 </select>
                             </div>
-                            <div className="grid grid-cols-1 mb-3">
+                            <div className="grid grid-cols-1 mb-10">
                                 <p className="font-bold text-[16px] text[#291943] mb-2">File document:</p>
                                 <input onChange={ validFile } type="file" accept="application/pdf" multiple={false}
                                 className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 p-2.5" />
-                            </div>
-                            <div className="grid grid-cols-1 mb-10">
-                                <div className="flex items-center">
-                                    <input onClick={ () => setEnableComment(`${enableComment==='false'}`) } 
-                                    type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-2 " />
-                                    <span className="text-[15px] font-medium text-gray-900 ml-2 mt-[2px]">Check to enable comment section</span>
-                                </div>
                             </div>
                             <div className="flex justify-center">
                                 <button onClick={ uploadDocu }
