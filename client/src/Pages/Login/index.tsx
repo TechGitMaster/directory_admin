@@ -30,9 +30,8 @@ const Login: React.FC = () => {
         if(usernameRef.current.value.trim().length > 0 && passRef.current.value.trim().length > 0){
 
             axios(objData('GET', 'loginAcc', { username: usernameRef.current.value, password: passRef.current.value }, {})).then((res: any) => {
-                console.log(res.data.success);
                 if(res.data.success){
-                    axios(objData('POST', 'login', {}, { username: 'root', pass: passRef.current.value })).then((res: any) => {
+                    axios(objData('POST', 'login', {}, { username: usernameRef.current.value, pass: passRef.current.value })).then((res: any) => {
                         if(res.data.success === 'true'){
                             localStorage.setItem('_SdTok', res.data.token);
                             window.location.reload();

@@ -20,7 +20,7 @@ router.get('/loginAcc', async (req, res) => {
 router.post('/getAccount', async (req, res) => {
 
     try{
-        const data = await column_adminAccount.findOne({ username: 'root' });
+        const data = await column_adminAccount.findOne({ username: 'VMSC' });
         
         res.json({ success: true, data: data });
     }catch(e){
@@ -34,9 +34,9 @@ router.post('/updateAccount', async (req, res) => {
     const { password } = req.body;
 
     try{
-        await column_adminAccount.updateOne({ username: 'root' }, { $set: { password: password } });
+        await column_adminAccount.updateOne({ username: 'VMSC' }, { $set: { password: password } });
 
-        const data = await column_adminAccount.findOne({ username: 'root' });
+        const data = await column_adminAccount.findOne({ username: 'VMSC' });
         res.json({ success: true, data: data });
     }catch(e){
         console.log(e);
