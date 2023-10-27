@@ -31,7 +31,7 @@ const Home: React.FC = () => {
     return (
         <>
         <div className='flex'>
-            <div className='w-[350px] min-h-[100vh] bg-[#181716] p-5 text-white'>
+            <div className='w-[350px] min-h-[100vh] bg-[#181716] p-5 text-white' onClick={() => setClickAcc(false) }>
                 <div className='flex items-center mb-9'>
                     <img src={logocircle} className='w-[45px] h-[45px]' alt='logo' />
                     <p className='text-[17px] text-[#DEAC00] font-bold ml-[11px]'>THESISARY</p>
@@ -80,8 +80,10 @@ const Home: React.FC = () => {
                         
                     </div>
                 </div>
-
-                <Outlet context={{ clickNavi }} />
+                
+                <div onClick={() => setClickAcc(false) }>
+                    <Outlet context={{ clickNavi }} />
+                </div>
             </div>
         </div>
         </>

@@ -31,6 +31,7 @@ const InventoryResources: React.FC = () => {
     //useRef for year and search bar_____________________________________________
     const searchFilter = useRef<any>('');
     const yearFilter = useRef<any>('');
+    const [searchs, setSearchs] = useState<any>('');
 
     //useState for course, skip and limit________________________________________________________
     const [selected, setSelected] = useState<string>('ALL');
@@ -114,7 +115,7 @@ const InventoryResources: React.FC = () => {
             setObjLoading({ progress: Math.floor(Math.random()*80), textInfo: 'Waiting'  });
             let obj = {
                 method: 'POST',
-                url: 'https://directory-admin-server.vercel.app/delete_resources',
+                url: 'http://localhost:4000/delete_resources',
                 params: { /*this is for req.params */ },
                 data: { _id: objconfirm._id },
                 headers: {
@@ -204,6 +205,17 @@ const InventoryResources: React.FC = () => {
         }, type: GET_DOCU });
     }
 
+    
+    //Hit enter in input______________________________________
+    const inputSearch = (e: any) => {
+        if(e.key === 'Enter' && searchFilter.current.value !== searchs){
+            setSearchs(searchFilter.current.value);
+            buttonSearch();
+        }
+    }    
+
+
+
     return (
         <>
         <div>
@@ -226,7 +238,7 @@ const InventoryResources: React.FC = () => {
                     <div className='flex items-center mb-6'>
                         <div className='w-[330px] h-[40px] px-[15px] border-2 rounded-md border-[#D1D5DB] flex items-center bg-[#F9FAFB]'>
                             <img src={search} alt="search" className='w-[21px] h-[21px]' />
-                            <input type="text" ref={ searchFilter } placeholder='Search for Research' className='w-[90%] outline-none ml-3 text-[15px] bg-[#F9FAFB]'  />
+                            <input type="text" ref={ searchFilter } onKeyDown={ inputSearch } placeholder='Search a Research' className='w-[90%] outline-none ml-3 text-[15px] bg-[#F9FAFB]'  />
                         </div>
                         <div className='ml-5 flex items-center'>
                             <p className='text-[15px] text-[#868789] mr-2'>Filter By:</p>
