@@ -56,18 +56,26 @@ const Login: React.FC = () => {
         }
     }
 
+
+    //Hit enter in input______________________________________
+    const inputSearch = (e: any) => {
+        if(e.key === 'Enter'){
+            bttn();
+        }
+    }    
+
     return (
         <>
         <div className='h-[100vh] flex justify-center items-center bg-[#D75601]'>
             <div className='w-[400px] min-h-[200px] bg-white rounded-md p-5'>
                 <p className='text-center text-[#0063A8] text-[28px] font-bold mt-5'>Login Admin</p>
                 <div className='mt-10 px-4'>
-                    <input type='text' ref={usernameRef} placeholder='Username' className='bg-gray-50 border-2 outline-none border-gray-300  text-sm rounded-lg block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 ' />
+                    <input type='text' ref={usernameRef} onKeyDown={ inputSearch } placeholder='Username' className='bg-gray-50 border-2 outline-none border-gray-300  text-sm rounded-lg block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 ' />
                     {
                         logErr[0].length > 0 ? <label className='text-[#ED2E2E] font-bold text-[13px]'>{logErr[0]}</label>:''
                     }
 
-                    <input type='password' ref={passRef} placeholder='Password' className='mt-3 bg-gray-50 border-2 outline-none border-gray-300  text-sm rounded-lg block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 ' />
+                    <input type='password' ref={passRef} onKeyDown={ inputSearch } placeholder='Password' className='mt-3 bg-gray-50 border-2 outline-none border-gray-300  text-sm rounded-lg block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 ' />
                     {
                         logErr[1].length > 0 ? <label className='text-[#ED2E2E] font-bold text-[13px]'>{logErr[1]}</label>:''
                     }
