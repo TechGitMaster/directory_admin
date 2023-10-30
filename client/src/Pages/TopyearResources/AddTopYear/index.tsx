@@ -39,7 +39,7 @@ const AddtopYear: React.FC = () => {
     const [confirmLoad, setConfirmLoad] = useState<string>('new');
     const [objconfirm, setObjConfirm] = useState<any>({});
     const [objLoading, setObjLoading] = useState<any>({});
-
+    const [yearSet, setYearSet] = useState(0);
 
     const courses: Array<string> = ['ALL', 'STEM', 'ABM', 'HUMSS', 'GAS', 'I.C.T', 'Home Economics'];
 
@@ -48,15 +48,19 @@ const AddtopYear: React.FC = () => {
         buttonSearch();
     }, []);
 
+    useEffect(() => {
+        if(dataDocuments.res.length){
+            var selectElement = document.querySelector("#option") as HTMLSelectElement;
+            selectElement.selectedIndex = yearSet; 
+        }
+    }, [dataDocuments])
+
     //Get search, filter year, course, skip and limit______________________________________________________
     const filters = () => {
         let numb = yearFilter.current.value;     
         let years = numb !== 'By Year Posted' ? yearArray()[parseInt(numb)][0]:'';
         
-        setTimeout(() => {
-            var selectElement = document.querySelector("#option") as HTMLSelectElement;
-            selectElement.selectedIndex = Number.isNaN(parseInt(numb)) ? 0:parseInt(numb)+1; 
-        }, 200)
+        setYearSet(Number.isNaN(parseInt(numb)) ? 0:parseInt(numb)+1);
 
         return {
             course: selected, 
@@ -94,16 +98,14 @@ const AddtopYear: React.FC = () => {
     //Click btn Course________________________________________________
     const btnCourse = (course: string) => {
         setSelected(course);
-        yearFilter.current.value = '';
-        searchFilter.current.value = '';
         setArrowLeftRight([0, 24]);
         setRightLeArr(24);
         setIndexCount(4);
 
         dispatch({ dataC: {
             course: course, 
-            search: '', 
-            year: '', 
+            search: searchFilter.current.value, 
+            year: yearFilter.current.value !== 'By Year Posted' ? yearArray()[parseInt(yearFilter.current.value)][0]:'', 
             skip: 0, 
             limit: 6
         }, type: GET_DOCU });
