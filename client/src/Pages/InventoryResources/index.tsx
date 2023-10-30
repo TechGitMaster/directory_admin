@@ -49,10 +49,19 @@ const InventoryResources: React.FC = () => {
 
     //Get search, filter year, course, skip and limit______________________________________________________
     const filters = () => {
+        
+        let numb = yearFilter.current.value;     
+        let years = numb !== 'By Year Posted' ? yearArray()[parseInt(numb)][0]:'';
+        
+        setTimeout(() => {
+            var selectElement = document.querySelector("#option") as HTMLSelectElement;
+            selectElement.selectedIndex = Number.isNaN(parseInt(numb)) ? 0:parseInt(numb)+1; 
+        }, 200)
+
         return {
             course: selected, 
             search: searchFilter.current.value, 
-            year: yearFilter.current.value !== 'By Year Posted' ? yearArray()[parseInt(yearFilter.current.value)][0]:'', 
+            year: years, 
             skip: 0, 
             limit: 6
         };
@@ -62,6 +71,7 @@ const InventoryResources: React.FC = () => {
     const buttonSearch = async () => {
         if(await checkingAuth() !== "false"){
             dispatch({ dataC: filters(), type: GET_DOCU });
+
         }else{
             window.location.reload();
         }
@@ -87,6 +97,9 @@ const InventoryResources: React.FC = () => {
         setSelected(course);
         yearFilter.current.value = '';
         searchFilter.current.value = '';
+        setArrowLeftRight([0, 24]);
+        setRightLeArr(24);
+        setIndexCount(4);
 
         dispatch({ dataC: {
             course: course, 
@@ -243,7 +256,7 @@ const InventoryResources: React.FC = () => {
                         <div className='ml-5 flex items-center'>
                             <p className='text-[15px] text-[#868789] mr-2'>Filter By:</p>
                             <div>
-                                <select ref={ yearFilter } className="w-[190px] h-[40px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 ">
+                                <select ref={ yearFilter } id="option" className="w-[190px] h-[40px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 ">
                                     <option selected>By Year Posted</option>
                                     {
                                         yearArray().map((a, i) => <option key={ Math.random() } value={ i }>{ a[1] }</option>)
