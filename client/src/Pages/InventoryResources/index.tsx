@@ -303,8 +303,8 @@ const InventoryResources: React.FC = () => {
                         {  
                         dataDocuments.type === 'done' ?
                         dataDocuments.res.length > 0 ? dataDocuments.res.map((a:any) => 
-                        <div key={ Math.random() } className='p-1'>
-                            <div className='min-h-[300px] bg-[#2A2A2C] p-2 flex rounded-md'>
+                        <div key={ Math.random() } className='p-1 flex'>
+                            <div className='min-h-[300px] bg-[#2A2A2C] p-2 flex flex-1 rounded-md'>
                                 <div className='w-[45%] rounded-l-md bg-white overflow-hidden relative' >
                                     <img src={ imgFrontPDF } alt="frontPage" className='w-full h-full absolute z-20' />
                                     <div className='blur-sm h-[300px]'>
