@@ -47,16 +47,19 @@ const InventoryResources: React.FC = () => {
         buttonSearch();
     }, []);
 
+
     //Get search, filter year, course, skip and limit______________________________________________________
     const filters = () => {
         
         let numb = yearFilter.current.value;     
         let years = numb !== 'By Year Posted' ? yearArray()[parseInt(numb)][0]:'';
-        
+
         setTimeout(() => {
             var selectElement = document.querySelector("#option") as HTMLSelectElement;
             selectElement.selectedIndex = Number.isNaN(parseInt(numb)) ? 0:parseInt(numb)+1; 
-        }, 200)
+        }, 1000)
+
+
 
         return {
             course: selected, 
@@ -209,10 +212,19 @@ const InventoryResources: React.FC = () => {
 
     //Fagination btn click number_______________________________________________________
     const clickFagi = (data: any) => {
+
+        let numb = yearFilter.current.value;     
+        let years = numb !== 'By Year Posted' ? yearArray()[parseInt(numb)][0]:'';
+
+        setTimeout(() => {
+            var selectElement = document.querySelector("#option") as HTMLSelectElement;
+            selectElement.selectedIndex = Number.isNaN(parseInt(numb)) ? 0:parseInt(numb)+1; 
+        }, 200)
+
         dispatch({ dataC: {
             course: selected, 
             search: searchFilter.current.value, 
-            year: yearFilter.current.value !== 'By Year Posted' ? yearArray()[parseInt(yearFilter.current.value)][0]:'', 
+            year: years, 
             skip: data[1], 
             limit: data[0]
         }, type: GET_DOCU });
@@ -286,7 +298,8 @@ const InventoryResources: React.FC = () => {
                 <div className='p-5 bg-white rounded-lg '>
                     {/*__Document Fagination__*/}
                     {
-                        (dataDocuments.res.length > 0 ? 
+                        (dataDocuments.type === 'done' ? 
+                        dataDocuments.res.length > 0 ? 
                         <div className='mb-5 mt-3 flex justify-between items-center'>
                             <div className='flex items-center'>
                                 <div onClick={ () => leftRightArrow(false, dataDocuments.countAll) } 
@@ -306,6 +319,8 @@ const InventoryResources: React.FC = () => {
                                 { dataDocuments.res.length > 9 ? dataDocuments.countAll:'0'+dataDocuments.res.length }-06 of 
                                 { dataDocuments.countAll > 9 ? ' '+dataDocuments.countAll:' 0'+dataDocuments.countAll }</div>
                         </div>
+                        :
+                        ''
                         :
                         '')
                     }

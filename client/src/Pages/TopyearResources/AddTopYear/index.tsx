@@ -292,7 +292,8 @@ const AddtopYear: React.FC = () => {
                 <div className='p-5 bg-white rounded-lg '>
                     {/*__Document Fagination__*/}
                     {
-                        (dataDocuments.res.length > 0 ? 
+                        (dataDocuments.type === 'done' ?
+                        dataDocuments.res.length > 0 ? 
                         <div className='mb-5 mt-3 flex justify-between items-center'>
                             <div className='flex items-center'>
                                 <div onClick={ () => leftRightArrow(false, dataDocuments.countAll) } 
@@ -312,6 +313,8 @@ const AddtopYear: React.FC = () => {
                                 { dataDocuments.res.length > 9 ? dataDocuments.countAll:'0'+dataDocuments.res.length }-06 of 
                                 { dataDocuments.countAll > 9 ? ' '+dataDocuments.countAll:' 0'+dataDocuments.countAll }</div>
                         </div>
+                        :
+                        ''
                         :
                         '')
                     }
