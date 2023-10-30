@@ -30,8 +30,8 @@ const Home: React.FC = () => {
 
     return (
         <>
-        <div className='flex'>
-            <div className='w-[350px] min-h-[100vh] bg-[#181716] p-5 text-white' onClick={() => setClickAcc(false) }>
+        <div className='flex' onClick={() => setClickAcc(false) }>
+            <div className='w-[350px] min-h-[100vh] bg-[#181716] p-5 text-white'>
                 <div className='flex items-center mb-9'>
                     <img src={logocircle} className='w-[45px] h-[45px]' alt='logo' />
                     <p className='text-[17px] text-[#DEAC00] font-bold ml-[11px]'>THESISARY</p>
@@ -61,7 +61,7 @@ const Home: React.FC = () => {
             <div className='w-full min-h-full bg-[#F3F4F6]'>
                 <div className='py-2 px-9 flex justify-between bg-white mb-[2px]'>
                     <div className='w-[50%]'></div>
-                    <div className='relative'>
+                    <div className='relative' onClick={ (e) => e.stopPropagation() }>
                         <div onClick={ () => setClickAcc(a => !a) } className='cursor-pointer select-none'>
                             <div className='flex items-center'>
                                 <p className='text-[15px] text-[#DEAC00] mr-[5px]'>Administrator</p>
@@ -81,9 +81,7 @@ const Home: React.FC = () => {
                     </div>
                 </div>
                 
-                <div onClick={() => setClickAcc(false) }>
-                    <Outlet context={{ clickNavi }} />
-                </div>
+                <Outlet context={{ clickNavi }} />
             </div>
         </div>
         </>
